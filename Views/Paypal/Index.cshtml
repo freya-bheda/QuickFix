@@ -1,0 +1,81 @@
+﻿
+<style>
+    .footer[b-9jpqodmd63] {
+        position: absolute;
+       
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px;
+        bottom: revert;
+    }
+</style>
+
+<main>
+    <div style=" " class="container">
+      <div class="jumbotron d-flex align-items-center" style="position : absolute; height:100% ; ">
+        <div class="container text-center">
+            <!--    <h1 class="display-1 mb-4"><br></h1>-->
+        </div>
+        <div class="rectangle-1"></div>
+        <div class="rectangle-2"></div>
+        <div class="rectangle-transparent-1"></div>
+        <div class="rectangle-transparent-2"></div>
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+        <div class="circle-3"></div>
+        <div class="triangle triangle-1">
+            <img src="img/obj_triangle.png" alt="">
+        </div>
+        <div class="triangle triangle-2">
+            <img src="img/obj_triangle.png" alt="">
+        </div>
+        <div class="triangle triangle-3">
+            <img src="img/obj_triangle.png" alt="">
+        </div>
+        <div class="triangle triangle-4">
+            <img src="img/obj_triangle.png" alt="">
+        </div>
+    </div>
+        <div style=" padding-top: 30%; padding-left: 15%;" id="paypal-button-container"></div>
+</div>
+</main>
+
+@section Scripts {
+    @*Use ViewBag.ClientId to load Paypal Javascript SDK*@
+    <!--<script src="@ViewBag.ClientId">https://www.paypal.com/sdk/js?client-id=@ViewBag.ClientId"></script> -->
+    <script src="https://www.paypal.com/sdk/js?client-id=@ViewBag.ClientId"></script>
+
+
+    <script>
+        paypal.Buttons({
+            style: {
+                layout: 'vertical',
+                color: 'silver',
+                tagline: 'false'
+            },
+            createOrder: (data, actions) => {
+                return fetch("@Url.Action("Order")", {
+                    method: "post",
+                }).then((response) => {
+                    if (!response.ok) {
+                        return response.json().then(error => { throw error; });
+                    }
+
+                    return response.json();
+                }).then((order) => order.id)
+                    .catch(error => alert(error.message));
+            },
+            onApprove: (data, actions) => {
+                return fetch(`@Url.Action("Capture")?orderId=${data.orderID}`, {
+                    method: "post",
+                }).then((response) => {
+                    if (!response.ok) {
+                        return response.json().then(error => { throw error; });
+                    }
+
+                    window.location.href = "@Url.Action("Success")";
+                }).catch(error => alert(error.message));
+            }
+        }).render('#paypal-button-container');
+    </script>
+}

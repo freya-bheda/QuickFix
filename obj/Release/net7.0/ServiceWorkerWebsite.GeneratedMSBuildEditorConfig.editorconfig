@@ -1,0 +1,155 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ServiceWorkerWebsite
+build_property.RootNamespace = ServiceWorkerWebsite
+build_property.ProjectDir = C:\Users\ompat\OneDrive\Desktop\college\semesters\6th Semester\Capstone\QuickFix Project\Main Branch\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ompat\OneDrive\Desktop\college\semesters\6th Semester\Capstone\QuickFix Project\Main Branch
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Bookings/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Bookings/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Bookings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Bookings/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Bookings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Paypal/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Paypal/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5cGFsXFN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Services/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Services/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Services/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Services/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Services/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/TimeSlots/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZVNsb3RzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/TimeSlots/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZVNsb3RzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/TimeSlots/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZVNsb3RzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/TimeSlots/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZVNsb3RzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/TimeSlots/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZVNsb3RzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/WorkerServices/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2VyU2VydmljZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/WorkerServices/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2VyU2VydmljZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/WorkerServices/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2VyU2VydmljZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/WorkerServices/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2VyU2VydmljZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/WorkerServices/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2VyU2VydmljZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Workers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Workers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Workers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Workers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Workers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ompat/OneDrive/Desktop/college/semesters/6th Semester/Capstone/QuickFix Project/Main Branch/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-9jpqodmd63
