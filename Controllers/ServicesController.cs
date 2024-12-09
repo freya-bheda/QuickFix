@@ -10,7 +10,7 @@ using ServiceWorkerWebsite.Data;
 
 namespace ServiceWorkerWebsite.Controllers
 {
-    [Authorize(Roles ="Customer,Admin")]
+  //  [Authorize(Roles ="Customer,Admin")]
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -19,13 +19,13 @@ namespace ServiceWorkerWebsite.Controllers
         {
             _context = context;
         }
-        [Authorize(Roles = "Customer,Admin")]
+//        [Authorize(Roles = "Customer,Admin")]
         // GET: Services
         public async Task<IActionResult> Index()
         {
               return View(await _context.Services_List.ToListAsync());
         }
-        [Authorize(Roles = "Customer,Admin")]
+       // [Authorize(Roles = "Customer,Admin")]
         // GET: Services/Details/5
         public async Task<IActionResult> Details(int? id)
         {

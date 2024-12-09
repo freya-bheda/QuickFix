@@ -11,9 +11,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiceWorkerWebsite.Controllers
 {
+    [Authorize(Roles = "Customer,Admin")]
     public class WorkersController : Controller
     {
 
