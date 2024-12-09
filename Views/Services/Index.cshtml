@@ -4,64 +4,148 @@
     ViewData["Title"] = "Our Services";
 }
 
-<!-- Include Bootstrap CSS -->
-<!-- Include Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Load stylesheets -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
 
-<!-- Custom CSS -->
-<link rel="stylesheet" href="~/css/Services.css">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #D946EF 100%);
+        color: #374151;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    .services-header {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 3.5rem;
+    }
+
+    .service-search {
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: center;
+    }
+
+        .service-search input {
+            max-width: 500px;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+            .service-search input:focus {
+                border-color: #8B5CF6;
+                box-shadow: 0 4px 25px rgba(139, 92, 246, 0.15);
+                outline: none;
+            }
+
+    .service-card {
+        background: rgba(255, 255, 255, 0.98);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+    .service-img {
+        border-radius: 20px 20px 0 0;
+        height: 220px;
+        width: 100%;
+        object-fit: cover;
+        display: none; /* Initially hidden */
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .service-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 1rem;
+    }
+
+    .service-description {
+        color: #6B7280;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.8rem;
+    }
+
+    .skeleton-loader {
+        background-color: #f0f0f0;
+        height: 220px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .btn-primary {
+        background-color: #8B5CF6;
+        border: none;
+        padding: 0.875rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #7C3AED;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-primary i {
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(5px);
+        }
+</style>
 
 <div class="container">
-    
-    <div style=" " class="container">
-        <div class="jumbotron d-flex align-items-center" style="position : absolute; height:100% ; ">
-            <div class="container text-center">
-                <!--    <h1 class="display-1 mb-4"><br></h1>-->
-            </div>
-            <div class="rectangle-1"></div>
-            <div class="rectangle-2"></div>
-            <div class="rectangle-transparent-1"></div>
-            <div class="rectangle-transparent-2"></div>
-            <div class="circle-1"></div>
-            <div class="circle-2"></div>
-            <div class="circle-3"></div>
-            <div class="triangle triangle-1">
-                <img src="img/obj_triangle.png" alt="">
-            </div>
-            <div class="triangle triangle-2">
-                <img src="img/obj_triangle.png" alt="">
-            </div>
-            <div class="triangle triangle-3">
-                <img src="img/obj_triangle.png" alt="">
-            </div>
-            <div class="triangle triangle-4">
-                <img src="img/obj_triangle.png" alt="">
-            </div>
-        </div>
-        <h1 class="text-center mb-5">@ViewData["Title"]</h1>
-    <!-- Search Box -->
-    <div style="padding-top:60px" class="row mb-4">
-        <div class="col-lg-6 offset-lg-3">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search for a service...">
-        </div>
+    <div class="services-header">
+        <h1 class="mb-3">@ViewData["Title"]</h1>
+        <p class="lead">Explore our range of services tailored just for you!</p>
+    </div>
+
+    <div class="service-search">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search for a service..." autocomplete="off">
     </div>
 
     <div class="row" id="serviceList">
         @foreach (var item in Model)
         {
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card border-0 shadow-sm service-card" data-tilt data-tilt-max="20" data-tilt-speed="400">
-                    <!-- Image -->
-                    <img src="@Url.Content(item.ImageUrl)" class="card-img-top service-img" alt="@item.Name">
-
+                <div class="card service-card">
+                    <div class="skeleton-loader"></div>
+                    <img src="@Url.Content(item.ImageUrl)"
+                         class="service-img"
+                         alt="@item.Name"
+                         onload="this.style.display='block'; this.previousElementSibling.style.display='none';">
                     <div class="card-body text-center">
-                        <!-- Service Details -->
-                        <h5 class="card-title service-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                        <p class="card-text service-description">@Html.DisplayFor(modelItem => item.Description)</p>
-                        <!-- Action Buttons -->
-                        <div class="text-center">
-                            <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Workers" asp-route-serviceId="@item.Service_Id" asp-action="Index">View Available Workers</a>
-                        </div>
+                        <h5 class="service-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="service-description">@Html.DisplayFor(modelItem => item.Description)</p>
+                        <a class="btn btn-primary" asp-area="" asp-controller="Workers" asp-route-serviceId="@item.Service_Id" asp-action="Index">
+                            View Available Workers <i class="ri-arrow-right-line"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -69,32 +153,31 @@
     </div>
 </div>
 
-<!-- Include Bootstrap JS (Optional) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="~/js/vanilla-tilt.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-    VanillaTilt.init(document.querySelectorAll(".service-card"), {
-        max: 20,
-        speed: 400,
-        glare: true,
-        "max-glare": 1
-    });
+    // Efficient search implementation
+    const debounce = (fn, delay) => {
+        let timeoutId;
+        return (...args) => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => fn(...args), delay);
+        };
+    };
 
-    // Function to filter services based on search query
-    document.getElementById("searchInput").addEventListener("keyup", function () {
-        var input, filter, cards, card, title, i;
-        input = document.getElementById("searchInput");
-        filter = input.value.toUpperCase();
-        cards = document.getElementById("serviceList").getElementsByClassName("card");
-
-        for (i = 0; i < cards.length; i++) {
-            card = cards[i];
-            title = card.querySelector(".card-title");
-            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize search with debouncing
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', debounce((e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('.service-card').forEach(card => {
+                    const title = card.querySelector('.service-title').textContent.toLowerCase();
+                    const parentCol = card.closest('.col-lg-4');
+                    parentCol.style.display = title.includes(searchTerm) ? '' : 'none';
+                });
+            }, 300));
         }
     });
 </script>

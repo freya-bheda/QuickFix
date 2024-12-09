@@ -7,7 +7,12 @@
     <UserSecretsId>979e675d-d4e5-45c3-b38c-ab68c713851c</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
@@ -22,6 +27,18 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Approles\" />
+    <Folder Include="Views\AppRoles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Approles\" />
+    <None Remove="Views\AppRoles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\services\EmailService.cs" />
+    <Content Include="Areas\services\EmailSettings.cs" />
+    <Content Include="Areas\services\IdentityExtensions.cs" />
+  </ItemGroup>
 </Project>

@@ -200,6 +200,12 @@ namespace ServiceWorkerWebsite.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -246,6 +252,64 @@ namespace ServiceWorkerWebsite.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ServiceWorkerWebsite.Models.Applicationuser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Applicationusers");
+                });
+
             modelBuilder.Entity("ServiceWorkerWebsite.Models.Booking", b =>
                 {
                     b.Property<int>("Id")
@@ -260,16 +324,50 @@ namespace ServiceWorkerWebsite.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CustomerContact")
+                    b.Property<int>("Service_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TimeSlotId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Worker_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Service_Id");
+
+                    b.HasIndex("TimeSlotId");
+
+                    b.HasIndex("Worker_Id");
+
+                    b.ToTable("Booking");
+                });
+
+            modelBuilder.Entity("ServiceWorkerWebsite.Models.Reviews", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Service_Id")
+                    b.Property<int>("RatingValue")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TimeSlotId")
+                    b.Property<DateTime>("ReviewDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Service_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Worker_Id")
@@ -279,7 +377,51 @@ namespace ServiceWorkerWebsite.Migrations
 
                     b.HasIndex("Service_Id");
 
-                    b.ToTable("Booking");
+                    b.HasIndex("Worker_Id");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("ServiceWorkerWebsite.Models.UserAddress", b =>
+                {
+                    b.Property<int>("UserAdd_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserAdd_Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("StreetNumberName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserAdd_Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAddress");
                 });
 
             modelBuilder.Entity("TimeSlot", b =>
@@ -290,14 +432,14 @@ namespace ServiceWorkerWebsite.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimeSlotId"));
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsBooked")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("SelectedDates")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TimeSlots")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Worker_Id")
                         .HasColumnType("int");
@@ -317,25 +459,26 @@ namespace ServiceWorkerWebsite.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Worker_Id"));
 
-                    b.Property<string>("Availability_Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Price")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("ProfilePicData")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("ProfilePic_Id")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Ratings")
-                        .HasColumnType("float");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Reviews")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Worker_Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Worker_List");
                 });
@@ -346,9 +489,6 @@ namespace ServiceWorkerWebsite.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Service_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkerServiceId")
                         .HasColumnType("int");
 
                     b.HasKey("Worker_Id", "Service_Id");
@@ -417,7 +557,49 @@ namespace ServiceWorkerWebsite.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TimeSlot", "TimeSlot")
+                        .WithMany()
+                        .HasForeignKey("TimeSlotId");
+
+                    b.HasOne("Worker", "Worker")
+                        .WithMany()
+                        .HasForeignKey("Worker_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Service");
+
+                    b.Navigation("TimeSlot");
+
+                    b.Navigation("Worker");
+                });
+
+            modelBuilder.Entity("ServiceWorkerWebsite.Models.Reviews", b =>
+                {
+                    b.HasOne("Service", "Service")
+                        .WithMany("Review")
+                        .HasForeignKey("Service_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Worker", "Worker")
+                        .WithMany("Reviews")
+                        .HasForeignKey("Worker_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Service");
+
+                    b.Navigation("Worker");
+                });
+
+            modelBuilder.Entity("ServiceWorkerWebsite.Models.UserAddress", b =>
+                {
+                    b.HasOne("ServiceWorkerWebsite.Areas.Identity.Data.ServiceWorkerWebsiteUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TimeSlot", b =>
@@ -429,6 +611,22 @@ namespace ServiceWorkerWebsite.Migrations
                         .IsRequired();
 
                     b.Navigation("Worker");
+                });
+
+            modelBuilder.Entity("Worker", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.HasOne("ServiceWorkerWebsite.Areas.Identity.Data.ServiceWorkerWebsiteUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WorkerService", b =>
@@ -452,12 +650,16 @@ namespace ServiceWorkerWebsite.Migrations
 
             modelBuilder.Entity("Service", b =>
                 {
+                    b.Navigation("Review");
+
                     b.Navigation("WorkerServices");
                 });
 
             modelBuilder.Entity("Worker", b =>
                 {
                     b.Navigation("AvailableTimeSlots");
+
+                    b.Navigation("Reviews");
 
                     b.Navigation("WorkerServices");
                 });

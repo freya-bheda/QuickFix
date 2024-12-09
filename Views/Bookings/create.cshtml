@@ -1,236 +1,403 @@
 ﻿@model ServiceWorkerWebsite.Models.Booking
 
 @{
-
-    ViewData["Title"] = "Create";
-
+    ViewData["Title"] = "Create Booking";
 }
+
+<link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+
 <style>
     body {
-        background-color: #f0f2f5; /* Soft background color */
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #D946EF 100%);
+        color: #374151;
     }
 
-    .container {
-        padding-top: 20px;
+    .create-container {
+        padding: 2rem;
     }
 
-    h1, h4 {
-        color: mediumpurple; /* Dark grey color for headings */
+    .create-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
     }
 
-    .form-group {
+    .page-title {
+        font-size: 28px;
+        color: #111827;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+        .page-title i {
+            font-size: 32px;
+            color: #8B5CF6;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+    .page-subtitle {
+        text-align: center;
+        color: #6B7280;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .calendar-section {
+        background: #F9FAFB;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid #E5E7EB;
+    }
+
+    .section-title {
+        color: #111827;
+        font-size: 1.1rem;
+        font-weight: 600;
         margin-bottom: 1rem;
     }
 
-    label {
-        font-weight: 600;
-        color: #555; /* Slightly darker grey for labels */
-    }
-
-    .form-control {
-        border-radius: 0.25rem; /* Rounded borders for form inputs */
-        border: 1px solid #ced4da; /* Light grey border */
-        padding: 0.375rem 0.75rem; /* Padding inside inputs */
-    }
-
-        .form-control:focus {
-            border-color: #80bdff; /* Highlight color when focused */
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(128, 189, 255, 0.6); /* Subtle shadow for depth */
+        .section-title i {
+            color: #8B5CF6;
+            font-size: 1.25rem;
+            margin-right: 8px;
+            vertical-align: middle;
         }
 
+    .flatpickr-input {
+        display: none;
+    }
+
+    .time-slot-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+        margin-top: 1rem;
+    }
+
+    .time-slot {
+        padding: 12px;
+        border: 2px solid #E5E7EB;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        color: #374151;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+        .time-slot:hover {
+            border-color: #8B5CF6;
+            background-color: #F5F3FF;
+        }
+
+        .time-slot.selected {
+            background-color: #8B5CF6;
+            color: white;
+            border-color: #8B5CF6;
+        }
+
+    .terms-container {
+        background: #F9FAFB;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border: 1px solid #E5E7EB;
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
     .form-check-input {
-        width: 20px;
-        height: 20px; /* Larger checkbox */
-        margin-top: 0.3rem; /* Align checkbox vertically with label */
-        margin-right: 0.5rem; /* Space between checkbox and label */
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
     }
 
-    .btn-primary {
-        background-color: #007bff; /* Primary button color */
-        border-color: #007bff; /* Border color to match */
-        color: #fff; /* White text */
-        padding: 0.5rem 1rem; /* Padding inside button */
-        border-radius: 0.25rem; /* Rounded borders for buttons */
-        font-size: 1rem; /* Button text size */
-        line-height: 1.5; /* Line height for button text */
+    .form-check-label {
+        color: #374151;
+        font-size: 0.95rem;
     }
 
-        .btn-primary:hover {
-            background-color: #0056b3; /* Darker shade for hover state */
-            border-color: #004085; /* Border color for hover state */
+        .form-check-label a {
+            color: #8B5CF6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .form-check-label a:hover {
+                text-decoration: underline;
+            }
+
+    .submit-btn {
+        background-color: #8B5CF6;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        border: none;
+        font-size: 1rem;
+        font-weight: 600;
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .submit-btn:hover {
+            background-color: #7C3AED;
+        }
+
+        .submit-btn i {
+            margin-right: 8px;
+            font-size: 1.25rem;
         }
 
     .text-danger {
-        color: #dc3545; /* Bootstrap default danger color */
+        color: #EF4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        display: block;
     }
 
-    /* Add more custom styles as needed */
+    .flatpickr-calendar {
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: none;
+        margin: 0 auto;
+    }
+
+    .flatpickr-day.selected {
+        background: #8B5CF6 !important;
+        border-color: #8B5CF6 !important;
+    }
+
+    .selection-info {
+        background-color: #F3F4F6;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+        border: 1px solid #E5E7EB;
+        display: none;
+    }
+
+        .selection-info.active {
+            display: block;
+        }
+
+    .info-label {
+        font-weight: 600;
+        color: #6B7280;
+        margin-right: 8px;
+    }
+
+    .info-value {
+        color: #111827;
+        font-weight: 500;
+    }
 </style>
 
+<div class="create-container">
+    <div class="create-card">
+        <h1 class="page-title">
+            <i class="ri-calendar-check-line"></i>
+            Schedule Appointment
+        </h1>
+        <p class="page-subtitle">Select your preferred date and time</p>
 
-<h1>Create</h1>
+        <form asp-action="Create" id="bookingForm">
+            <input type="hidden" asp-for="Worker_Id" value="@ViewData["Worker_Id"]" />
+            <input type="hidden" asp-for="Service_Id" value="@ViewData["Service_Id"]" />
+            <input type="hidden" id="TimeSlotId" name="TimeSlotId" />
 
-<h4>Booking</h4>
-
-<hr />
-
-<div class="row">
-
-    <div class="col-md-4">
-
-        <form id="bookingForm" asp-action="Create">
-
-            <input type="hidden" asp-for="Worker_Id" value="@ViewData["Worker_Id"]" /> <!-- Hidden field for WorkerId -->
-
-            <input type="hidden" asp-for="Service_Id" value="@ViewData["Service_Id"]" /> <!-- Hidden field for ServiceId -->
-            <!--@{
-
-                // Cast ViewData["AvailableTimeSlots"] to the appropriate IEnumerable type
-
-                var timeSlots = ViewData["AvailableTimeSlots"] as SelectList;
-
-            }
-
-                         <div class="form-group">
-
-                             <label asp-for="TimeSlotId" class="control-label">Time Slot</label>
-
-                             <select asp-for="TimeSlotId" class="form-control" asp-items="@timeSlots">
-
-                                 <option value="">Please select a time slot</option>
-
-                             </select>
-
-                             <span asp-validation-for="TimeSlotId" class="text-danger"></span>
-
-                         </div>
-
-                          -->
-            @{
-                // Get today's date and the date 7 days from today, formatted as "yyyy-MM-dd"
-                string today = DateTime.Today.ToString("yyyy-MM-dd");
-                string maxDate = DateTime.Today.AddDays(7).ToString("yyyy-MM-dd");
-            }
-
-            <input asp-for="BookingDate" class="form-control" id="BookingDate" type="date" min="@today" max="@maxDate" />
-
-
-            <select asp-for="TimeSlotId" class="form-control" id="TimeSlotId" ...>
-
-                <option value="">Please select a time slot</option>
-
-            </select>
-
-
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-
-                <label asp-for="Service_Id" class="control-label"></label>
-
-                <input type="text" readonly class="form-control" value="@ViewData["Service_Id"]" /> <!-- Display the ServiceId as readonly -->
-
-                <span asp-validation-for="Service_Id" class="text-danger"></span>
-
+            <div class="calendar-section">
+                <h3 class="section-title">
+                    <i class="ri-calendar-line"></i>
+                    Select Date
+                </h3>
+                <input type="text" class="form-control custom-datepicker" id="BookingDate" readonly />
             </div>
 
-
-            <div class="form-group">
-
-                <label asp-for="CustomerName" class="control-label"></label>
-
-                <input asp-for="CustomerName" class="form-control" />
-
-                <span asp-validation-for="CustomerName" class="text-danger"></span>
-
+            <div class="time-slots-section">
+                <h3 class="section-title">
+                    <i class="ri-time-line"></i>
+                    Available Time Slots
+                </h3>
+                <div class="time-slot-container" id="TimeSlotContainer">
+                    <div class="time-slot">Please select a date first</div>
+                </div>
             </div>
 
-            <div class="form-group">
-
-                <label asp-for="CustomerContact" class="control-label"></label>
-
-                <input asp-for="CustomerContact" class="form-control" />
-
-                <span asp-validation-for="CustomerContact" class="text-danger"></span>
-
+            <div id="selectionInfo" class="selection-info">
+                <span class="info-label">Selected Appointment:</span>
+                <span class="info-value" id="selectedDateTime"></span>
             </div>
 
-            <div class="form-group form-check">
-
-                <label class="form-check-label">
-
-                    <input class="form-check-input" asp-for="AgreeToTerms" /> @Html.DisplayNameFor(model => model.AgreeToTerms)
-
-                </label>
-
+            <div class="terms-container">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="agreeToTerms" asp-for="AgreeToTerms" />
+                    <label class="form-check-label" for="agreeToTerms">
+                        I agree to the <a asp-controller="Bookings" asp-action="TermsNCond">Terms and Conditions</a>
+                    </label>
+                </div>
                 <span asp-validation-for="AgreeToTerms" class="text-danger"></span>
-
             </div>
 
-            <div class="form-group">
-
-                <input type="submit" value="Create" class="btn btn-primary" />
-
-            </div>
-
+            <button type="submit" class="submit-btn">
+                <i class="ri-check-line"></i>
+                Confirm Booking
+            </button>
         </form>
-
     </div>
-
 </div>
-
-<div>
-
-    <a asp-action="Index">Back to List</a>
-
-</div>
-
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-
     document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("BookingDate").addEventListener("change", function () {
-            var selectedDate = this.value; // Get the selected date
-            var workerId = document.getElementById("Worker_Id").value; // Assuming you have a worker ID to send
+        var workerId = document.getElementById("Worker_Id").value;
+        var serviceId = document.getElementById("Service_Id").value;
 
-            // Make an AJAX call to fetch time slots
-            fetch('/Bookings/GetTimeSlotsForDate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'RequestVerificationToken': document.getElementsByName('__RequestVerificationToken')[0].value // Add anti-forgery token
-                },
-                body: JSON.stringify({ date: selectedDate, workerId: workerId })
+        // Fetch available slots
+        fetch('/Bookings/GetAvailableSlots', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.getElementsByName('__RequestVerificationToken')[0].value
+            },
+            body: JSON.stringify({
+                workerId: parseInt(workerId),
+                serviceId: parseInt(serviceId)
             })
-                .then(response => response.json())
-                .then(data => {
-                    var timeSlotSelect = document.getElementById("TimeSlotId"); // Your time slot select element
-                    timeSlotSelect.innerHTML = '<option value="">Please select a timeslot</option>'; // Clear current options
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Available slots data:", data);
 
-                    if (data.length === 1 && data[0].value === "-1") {
-                        // No time slots available, show a placeholder option
-                        var option = new Option(data[0].text, "Taken");
-                        option.disabled = true;
-                        timeSlotSelect.add(option);
-                    } else {
-                        // Populate the dropdown with available time slots
-                        data.forEach(function (timeSlot) {
-                            var option = new Option(timeSlot.text, timeSlot.value);
-                            timeSlotSelect.add(option);
-                        });
-                    }
-                })
-                .catch(error => console.error('Error fetching time slots:', error));
-        });
+                if (data.length === 0) {
+                    console.error('No data available for this worker.');
+                    document.getElementById('TimeSlotContainer').innerHTML =
+                        '<div class="time-slot">No available time slots found.</div>';
+                    return;
+                }
+
+                // Initialize Flatpickr
+                flatpickr("#BookingDate", {
+                    enable: data.map(item => item.date),
+                    onChange: function (selectedDates) {
+                        if (selectedDates.length > 0) {
+                            var selectedDate = selectedDates[0].toISOString().split('T')[0];
+                            console.log("Selected date:", selectedDate);
+                            loadTimeSlots(selectedDate, data);
+                            // Clear any previously selected time when date changes
+                            document.getElementById("TimeSlotId").value = "";
+                            document.getElementById("selectionInfo").style.display = "none";
+                        }
+                    },
+                    inline: true,
+                    dateFormat: "Y-m-d",
+                    minDate: "today",
+                    showMonths: 1,
+                    disableMobile: true
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching available slots:', error);
+                document.getElementById('TimeSlotContainer').innerHTML =
+                    '<div class="time-slot">Error loading time slots. Please try again.</div>';
+            });
     });
 
+    function loadTimeSlots(selectedDate, data) {
+        var timeSlotContainer = document.getElementById("TimeSlotContainer");
+        timeSlotContainer.innerHTML = '';
 
+        // Ensure we're using the correct date for comparison
+        var selectedData = data.find(d => d.date === selectedDate);
 
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        if (!selectedData || !selectedData.timeSlots || selectedData.timeSlots.length === 0) {
+            timeSlotContainer.innerHTML = '<div class="time-slot">No available time slots for this date.</div>';
+            return;
         }
+
+        var selectedTimeSlots = selectedData.timeSlots.sort((a, b) => {
+            const timeA = a.timeSlots.split('-')[0].trim();
+            const timeB = b.timeSlots.split('-')[0].trim();
+            return timeA.localeCompare(timeB);
+        });
+
+        selectedTimeSlots.forEach(function (slot) {
+            var timeSlotDiv = document.createElement('div');
+            timeSlotDiv.className = 'time-slot';
+            timeSlotDiv.innerText = slot.timeSlots;
+            timeSlotDiv.dataset.value = slot.timeSlotId;
+
+            timeSlotDiv.addEventListener('click', function () {
+                document.querySelectorAll('.time-slot').forEach(s =>
+                    s.classList.remove('selected'));
+
+                timeSlotDiv.classList.add('selected');
+                document.getElementById("TimeSlotId").value = slot.timeSlotId;
+
+                // Pass the corrected date to updateSelectionInfo
+                updateSelectionInfo(selectedDate, slot.timeSlots);
+            });
+
+            timeSlotContainer.appendChild(timeSlotDiv);
+        });
+    }
+    function updateSelectionInfo(date, timeSlot) {
+        const selectionInfo = document.getElementById('selectionInfo');
+        const selectedDateTime = document.getElementById('selectedDateTime');
+
+        if (date && timeSlot) {
+            // Add one day to account for timezone conversion
+            const dateObj = new Date(date);
+            dateObj.setDate(dateObj.getDate() + 1);  // Add one day to fix the date offset
+
+            const formattedDate = dateObj.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            selectedDateTime.textContent = `${formattedDate} at ${timeSlot}`;
+            selectionInfo.style.display = 'block';
+        } else {
+            selectionInfo.style.display = 'none';
+        }
+    }
+
+    // Form validation
+    document.getElementById("bookingForm").addEventListener("submit", function (event) {
+        var timeSlotId = document.getElementById("TimeSlotId").value;
+        var checkbox = document.getElementById("agreeToTerms");
+
+        if (!timeSlotId) {
+            event.preventDefault();
+            alert("Please select a time slot for your appointment.");
+            return;
         }
 
-
+        if (!checkbox.checked) {
+            event.preventDefault();
+            alert("Please agree to the terms and conditions before proceeding.");
+            return;
+        }
+    });
 </script>

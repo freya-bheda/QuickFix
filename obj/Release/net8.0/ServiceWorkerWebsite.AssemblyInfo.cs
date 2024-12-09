@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServiceWorkerWebsite")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7f6c8c2616072c3b5a7a14a3d15f3f4d6e0e85c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServiceWorkerWebsite")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServiceWorkerWebsite")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

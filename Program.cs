@@ -3,11 +3,16 @@ using PaypalCheckoutExample.Clients;
 using ServiceWorkerWebsite.Data;
 using Microsoft.AspNetCore.Identity;
 using ServiceWorkerWebsite.Areas.Identity.Data;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ServiceWorkerWebsite.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<IWebHostEnvironment>(builder.Environment);
 
 // PayPal client configuration
 builder.Services.AddSingleton(x =>
@@ -19,15 +24,25 @@ builder.Services.AddSingleton(x =>
 );
 
 // Add Identity services
-builder.Services.AddDefaultIdentity<ServiceWorkerWebsiteUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ServiceWorkerWebsiteUser>().AddDefaultTokenProviders().AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Adding SQL Server database connection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddTransient<IEmailSender, EmailService>();
+
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<IEmailSender, EmailService>();
+
 // Uncomment the following line if you want to use an in-memory database instead of SQL Server for testing
 // builder.Services.AddDbContext<ApplicationDbContext>(optionsBuilder => optionsBuilder.UseInMemoryDatabase("InMemoryDb"));
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 50 * 1024 * 1024; // 50 MB
+});
 
 var app = builder.Build();
 
@@ -51,6 +66,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.MapRazorPages();
 

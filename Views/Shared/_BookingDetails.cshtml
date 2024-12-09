@@ -1,0 +1,250 @@
+﻿@model ServiceWorkerWebsite.Models.Booking
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+
+<style>
+    #bookingDetailsModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 1rem;
+    }
+
+    .detail-container {
+        width: 100%;
+        max-width: 800px; /* Increased from 600px */
+        margin: auto;
+    }
+
+    .detail-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem; /* Increased padding */
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .page-title {
+        font-size: 1.75rem; /* Increased font size */
+        font-weight: 600;
+        color: #1F2937;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .booking-reference {
+        font-size: 1rem; /* Increased font size */
+        color: #6B7280;
+        margin-top: 0.5rem;
+    }
+
+    .info-section {
+        background: #F9FAFB;
+        border-radius: 12px;
+        padding: 2rem; /* Increased padding */
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #6366F1;
+        font-size: 1.25rem; /* Increased font size */
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem; /* Increased gap */
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .info-label {
+        font-size: 1rem;
+        color: #6B7280;
+    }
+
+    .info-value {
+        font-size: 1.125rem; /* Increased font size */
+        color: #1F2937;
+        font-weight: 500;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #E5E7EB;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem; /* Increased padding */
+        border-radius: 8px;
+        font-size: 1rem; /* Increased font size */
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-secondary {
+        background: #F3F4F6;
+        color: #4B5563;
+    }
+
+        .btn-secondary:hover {
+            background: #E5E7EB;
+        }
+
+    .btn-primary {
+        background: #6366F1;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #4F46E5;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+    }
+
+        .empty-state i {
+            font-size: 3.5rem;
+            color: #D1D5DB;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+</style>
+
+<div id="bookingDetailsModal">
+    <div class="detail-container">
+        <div class="detail-card">
+            @if (Model != null)
+            {
+                <div class="modal-header">
+                    <div class="page-title">
+                        <i class="ri-calendar-check-line"></i>
+                        Booking Details
+                    </div>
+                    <div class="booking-reference">Booking Reference: #@Model.Id</div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="section-title">
+                        <i class="ri-user-line"></i>
+                        Customer Information
+                    </h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Name</span>
+                            <span class="info-value">@Model.User.Firstname @Model.User.Lastname</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span class="info-value">@Model.User.Email</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone</span>
+                            <span class="info-value">@Model.User.PhoneNumber</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="section-title">
+                        <i class="ri-calendar-line"></i>
+                        Service Details
+                    </h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Service</span>
+                            <span class="info-value">@Model.Service.Name</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date</span>
+                            <span class="info-value">@Model.TimeSlot.SelectedDates</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Time</span>
+                            <span class="info-value">@Model.TimeSlot.TimeSlots</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Price</span>
+                            <span class="info-value">$@Model.Worker.Price</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Booking Date</span>
+                            <span class="info-value">@Model.BookingDate.ToShortDateString()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button onclick="closeModal()" class="btn btn-secondary">
+                        <i class="ri-close-line"></i>
+                        Close
+                    </button>
+                    <a href="@Url.Action("DownloadInvoice", "Bookings", new { id = Model.Id })" class="btn btn-primary">
+                        <i class="ri-download-line"></i>
+                        Download Invoice
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <i class="ri-information-line"></i>
+                    <p>No booking information available.</p>
+                    <button onclick="closeModal()" class="btn btn-secondary">
+                        <i class="ri-close-line"></i>
+                        Close
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function closeModal() {
+        const modal = document.getElementById('bookingDetailsModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>

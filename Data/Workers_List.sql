@@ -1,10 +1,10 @@
 ﻿-- Insert data into the Worker_List table
-INSERT INTO Worker_List (ProfilePic_Id, Name, Availability_Status, Ratings, Reviews, Price)
+INSERT INTO Worker_List (ProfilePic_Id, Price, UserId, RoleId)
 VALUES
-('/WorkerProfilePic/1.jpg', 'Ethan White', 'Full-Time', 4.6, 'Experienced plumber, provided efficient service.', 100),
-('/WorkerProfilePic/2.jpg', 'Olivia Taylor', 'Full-Time', 4.4, 'Skilled electrician, fixed the issue promptly.', 115),
-('/WorkerProfilePic/3.jpg', 'Aiden Martinez', 'Part-Time', 4.7, 'Professional beautician, reliable service.', 105),
-('/WorkerProfilePic/4.jpg', 'Madison Garcia', 'Full-Time', 4.3, 'Friendly AC technician, satisfied with the repair work.', 99),
-('/WorkerProfilePic/5.jpg', 'Jackson Clark', 'Full-Time', 4.5, 'Efficient carpenter, completed the job on time.', 125);
+('/WorkerProfilePic/1.jpg',  100,'0ba0e9c9-cd66-40af-bcb9-79a412d40ec3', 'e09a7a44-65b1-4d18-8dbc-1206cc44094c'),
+('/WorkerProfilePic/2.jpg',  115 , '0ba0e9c9-cd66-40af-bcb9-79a412d40ec3', 'e09a7a44-65b1-4d18-8dbc-1206cc44094c'),
+('/WorkerProfilePic/3.jpg',  105 , '0ba0e9c9-cd66-40af-bcb9-79a412d40ec3', 'e09a7a44-65b1-4d18-8dbc-1206cc44094c'),
+('/WorkerProfilePic/4.jpg',  99, '0ba0e9c9-cd66-40af-bcb9-79a412d40ec3', 'e09a7a44-65b1-4d18-8dbc-1206cc44094c'),
+('/WorkerProfilePic/5.jpg',  125, '0ba0e9c9-cd66-40af-bcb9-79a412d40ec3', 'e09a7a44-65b1-4d18-8dbc-1206cc44094c');
 
 
